@@ -7,8 +7,9 @@ import com.alibaba.dashscope.common.MultiModalMessage;
 import com.alibaba.dashscope.common.Role;
 import com.alibaba.dashscope.exception.NoApiKeyException;
 import com.alibaba.dashscope.exception.UploadFileException;
-import com.muse.muaiagent.demo.invoke.TestApiKey;
+import com.alibaba.dashscope.utils.Constants;
 import com.muse.muaiagent.service.MultiModalConversationCall;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,9 +21,15 @@ import java.util.Collections;
 @Service
 public class MultiModalConversationImpl implements MultiModalConversationCall {
 
+    @Value("${spring.ai.dashscope.api-key}")
+    private String dashscopeApiKey;
+
     @Override
     public String imgCall(MultipartFile file, String question)
             throws NoApiKeyException, UploadFileException, IOException {
+
+        // 确保 DashScope SDK 能拿到 API key（OSSUtils 需要）
+        Constants.apiKey = dashscopeApiKey;
 
         // 1. 把 MultipartFile 保存成本地临时文件
         String originalFilename = file.getOriginalFilename();
@@ -63,7 +70,7 @@ public class MultiModalConversationImpl implements MultiModalConversationCall {
 
             // 4. model 要用支持图片理解的多模态模型
             MultiModalConversationParam param = MultiModalConversationParam.builder()
-                    .apiKey(TestApiKey.API_KEY)
+                    .apiKey(dashscopeApiKey)
                     .model("qwen-vl-plus")
                     .messages(Collections.singletonList(userMessage))
                     .build();

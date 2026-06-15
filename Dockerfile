@@ -10,7 +10,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # 暴露应用端口
-EXPOSE 80
+EXPOSE 8123
 
 # 使用生产环境配置启动应用
-CMD ["java", "-jar", "/app/target/mu-ai-agent-0.0.1-SNAPSHOT.jar", "--spring.profiles.active=prod", "--server.port=80"]
+CMD ["java", "-jar", "/app/target/mu-ai-agent-0.0.1-SNAPSHOT.jar", "--spring.profiles.active=prod"]

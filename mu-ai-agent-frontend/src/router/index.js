@@ -12,10 +12,14 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/love-master',
-      name: 'love-master',
+      path: '/knowledge-economy',
+      name: 'knowledge-economy',
       component: ChatView,
-      props: { appType: 'love' },
+      props: { appType: 'knowledgeEconomy' },
+    },
+    {
+      path: '/love-master',
+      redirect: '/knowledge-economy',
     },
     {
       path: '/super-agent',

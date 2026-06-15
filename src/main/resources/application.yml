@@ -31,4 +31,5 @@ knife4j:
   setting:
     language: zh_cn
 search-api:
-  api-key: 6cNgKdLuvDaLATggAtDC5rdZ
+  api-key:
+

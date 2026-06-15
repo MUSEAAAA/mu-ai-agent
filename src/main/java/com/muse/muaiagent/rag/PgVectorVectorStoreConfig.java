@@ -21,7 +21,7 @@ import static org.springframework.ai.vectorstore.pgvector.PgVectorStore.PgIndexT
 public class PgVectorVectorStoreConfig {
 
     @Resource
-    private LoveAppDocumentLoader loveAppDocumentLoader;
+    private KnowledgeEconomyDocumentLoader knowledgeEconomyDocumentLoader;
 
     @Bean
     public VectorStore pgVectorVectorStore(@Qualifier("cloudJdbcTemplate") JdbcTemplate jdbcTemplate, EmbeddingModel dashscopeEmbeddingModel) {

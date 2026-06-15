@@ -5,12 +5,13 @@ import ArrowIcon from '../components/ArrowIcon.vue'
 
 const applications = [
   {
-    name: 'AI 恋爱大师',
-    eyebrow: 'LOVE MASTER',
-    description: '倾听你的困惑，读懂关系中的微妙信号，给出温柔而清醒的建议。',
-    route: '/love-master',
-    theme: 'rose',
-    tags: ['关系分析', '情绪陪伴'],
+    name: 'AI 知识经济顾问',
+    eyebrow: 'KNOWLEDGE ECONOMY',
+    description: '解答知识经济领域的问题，梳理核心概念、发展趋势与实际应用。',
+    route: '/knowledge-economy',
+    theme: 'knowledge',
+    tags: ['知识经济', '趋势分析'],
+    featured: true,
   },
   {
     name: 'AI 超级智能体',
@@ -37,17 +38,53 @@ const applications = [
       <AppLogo />
       <div class="home-nav__status">
         <span class="status-dot"></span>
-        AI 服务中心
+        KNOWLEDGE SYSTEM ONLINE
       </div>
     </nav>
 
     <section class="hero">
-      <div class="hero__label"><span></span> YOUR AI WORKSPACE</div>
-      <h1>
-        一点灵感，<br />
-        <em>无限可能。</em>
-      </h1>
-      <p>选择一个智能应用，开启属于你的 AI 对话。</p>
+      <div class="hero__copy">
+        <div class="hero__label"><span></span> INTELLIGENCE FOR THE KNOWLEDGE ECONOMY</div>
+        <h1>
+          让知识，成为<br />
+          <em>增长的基础设施。</em>
+        </h1>
+        <p>
+          从概念理解到趋势洞察，把分散的信息组织成可行动的认知。
+          与你的 AI 研究伙伴一起，探索知识驱动的新经济。
+        </p>
+        <div class="hero__actions">
+          <RouterLink to="/knowledge-economy" class="hero__primary">
+            开始研究
+            <ArrowIcon />
+          </RouterLink>
+          <span class="hero__note">面向学习、研究与战略思考</span>
+        </div>
+        <div class="hero__stats" aria-label="平台能力">
+          <div><strong>03</strong><span>智能应用</span></div>
+          <div><strong>24/7</strong><span>持续响应</span></div>
+          <div><strong>SSE</strong><span>实时生成</span></div>
+        </div>
+      </div>
+
+      <div class="hero__visual" aria-hidden="true">
+        <div class="knowledge-orbit knowledge-orbit--outer"></div>
+        <div class="knowledge-orbit knowledge-orbit--inner"></div>
+        <span class="knowledge-node knowledge-node--capital">资本</span>
+        <span class="knowledge-node knowledge-node--data">数据</span>
+        <span class="knowledge-node knowledge-node--talent">人才</span>
+        <span class="knowledge-node knowledge-node--innovation">创新</span>
+        <div class="knowledge-core">
+          <span>KNOWLEDGE</span>
+          <strong>知识经济</strong>
+          <small>VALUE NETWORK</small>
+        </div>
+        <div class="knowledge-index">
+          <span>KNOWLEDGE INDEX</span>
+          <strong>87.4</strong>
+          <i>+12.8%</i>
+        </div>
+      </div>
     </section>
 
     <section class="app-grid" aria-label="AI 应用列表">
@@ -56,7 +93,7 @@ const applications = [
         :key="app.route"
         :to="app.route"
         class="app-card"
-        :class="`app-card--${app.theme}`"
+        :class="[`app-card--${app.theme}`, { 'app-card--featured': app.featured }]"
       >
         <div class="app-card__top">
           <span class="app-card__number">0{{ index + 1 }}</span>
@@ -64,11 +101,14 @@ const applications = [
         </div>
 
         <div class="app-card__art" aria-hidden="true">
-          <div v-if="app.theme === 'rose'" class="heart-art">
-            <svg viewBox="0 0 180 150" fill="none">
-              <path d="M90 132S22 94 22 48C22 20 57 11 76 35L90 54l14-19c19-24 54-15 54 13 0 46-68 84-68 84Z" fill="currentColor" />
-              <path d="M51 50c5-13 17-17 26-9" stroke="white" stroke-width="5" stroke-linecap="round" opacity=".65" />
-            </svg>
+          <div v-if="app.theme === 'knowledge'" class="knowledge-card-art">
+            <span class="knowledge-card-art__ring"></span>
+            <span class="knowledge-card-art__axis knowledge-card-art__axis--one"></span>
+            <span class="knowledge-card-art__axis knowledge-card-art__axis--two"></span>
+            <span class="knowledge-card-art__node knowledge-card-art__node--one"></span>
+            <span class="knowledge-card-art__node knowledge-card-art__node--two"></span>
+            <span class="knowledge-card-art__node knowledge-card-art__node--three"></span>
+            <strong>K</strong>
           </div>
           <div v-else-if="app.theme === 'blue'" class="agent-art">
             <span class="agent-orbit agent-orbit--one"></span>
@@ -106,8 +146,8 @@ const applications = [
     </section>
 
     <footer class="home-footer">
-      <span>MU AI LAB · 2026</span>
-      <span>让智能，更贴近每一个具体的问题</span>
+      <span>MU INTELLIGENCE LAB · 2026</span>
+      <span>KNOWLEDGE · INSIGHT · ACTION</span>
     </footer>
   </main>
 </template>

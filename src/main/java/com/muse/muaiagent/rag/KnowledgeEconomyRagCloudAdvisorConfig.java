@@ -1,6 +1,5 @@
 package com.muse.muaiagent.rag;
 
-
 import com.alibaba.cloud.ai.dashscope.api.DashScopeApi;
 import com.alibaba.cloud.ai.dashscope.rag.DashScopeDocumentRetriever;
 import com.alibaba.cloud.ai.dashscope.rag.DashScopeDocumentRetrieverOptions;
@@ -16,17 +15,17 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @Slf4j
 @ConditionalOnProperty(name = "app.rag.cloud.enabled", havingValue = "true")
-public class LoveAppRagCloudeAdvisorConfig {
+public class KnowledgeEconomyRagCloudAdvisorConfig {
 
     @Value("${spring.ai.dashscope.api-key}")
     private String dashScopeApiKey;
 
     @Bean
-    public Advisor loveAppRagCloudeAdvisor() {
+    public Advisor knowledgeEconomyRagCloudAdvisor() {
         DashScopeApi dashScopeApi = new DashScopeApi(dashScopeApiKey);
-        final String KNOWLEDGE_INDEX = "恋爱大师";
-        DocumentRetriever  documentRetriever = new DashScopeDocumentRetriever(
-               dashScopeApi,
+        final String KNOWLEDGE_INDEX = "知识经济学";
+        DocumentRetriever documentRetriever = new DashScopeDocumentRetriever(
+                dashScopeApi,
                 DashScopeDocumentRetrieverOptions.builder()
                         .withIndexName(KNOWLEDGE_INDEX)
                         .build()
@@ -34,27 +33,5 @@ public class LoveAppRagCloudeAdvisorConfig {
         return RetrievalAugmentationAdvisor.builder()
                 .documentRetriever(documentRetriever)
                 .build();
-
     }
 }
-
-//@Configuration
-//@Slf4j
-//class LoveAppRagCloudAdvisorConfig {
-//
-//    @Value("${spring.ai.dashscope.api-key}")
-//    private String dashScopeApiKey;
-//
-//    @Bean
-//    public Advisor loveAppRagCloudAdvisor() {
-//        DashScopeApi dashScopeApi = new DashScopeApi(dashScopeApiKey);
-//        final String KNOWLEDGE_INDEX = "恋爱大师";
-//        DocumentRetriever documentRetriever = new DashScopeDocumentRetriever(dashScopeApi,
-//                DashScopeDocumentRetrieverOptions.builder()
-//                        .withIndexName(KNOWLEDGE_INDEX)
-//                        .build());
-//        return RetrievalAugmentationAdvisor.builder()
-//                .documentRetriever(documentRetriever)
-//                .build();
-//    }
-//}

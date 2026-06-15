@@ -1,7 +1,15 @@
 import axios from 'axios'
 
+const PRODUCTION_API_BASE_URL = '/api'
+const DEVELOPMENT_API_BASE_URL = 'http://localhost:8123/api'
+
+export const API_BASE_URL = (
+  import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.PROD ? PRODUCTION_API_BASE_URL : DEVELOPMENT_API_BASE_URL)
+).replace(/\/+$/, '')
+
 export const http = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8123/api',
+  baseURL: API_BASE_URL,
   timeout: 180000,
 })
 

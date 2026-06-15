@@ -1,1 +1,42 @@
-# 可以编写生产环境的配置，会覆盖application.yml配置
+server:
+  port: 8123
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: mu-ai-agent
+  ai:
+    mcp:
+      client:
+        enabled: false
+    dashscope:
+      api-key: ${DASHSCOPEKEY}
+      chat:
+        options:
+          model: qwen-plus
+
+app:
+  rag:
+    local:
+      enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.muse.muaiagent.controller
+
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+
+search-api:
+  api-key: ${SEARCH_API_KEY:}

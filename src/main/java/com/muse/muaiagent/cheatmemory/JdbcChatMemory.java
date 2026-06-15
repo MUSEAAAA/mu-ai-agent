@@ -17,8 +17,8 @@ import java.util.List;
 /**
  * 基于mySql + JDBCTemplate 实现的对话记忆持久化
  */
-@Component
-@ConditionalOnProperty(name = "app.database.enabled", havingValue = "true")
+//@Component
+//@ConditionalOnProperty(name = "app.database.enabled", havingValue = "true")
 public class JdbcChatMemory implements ChatMemory {
     private final JdbcTemplate localJdbcTemplate;
 

@@ -12,16 +12,16 @@ const props = defineProps({
 })
 
 const appConfigs = {
-  love: {
-    name: 'AI 恋爱大师',
-    eyebrow: 'LOVE MASTER',
-    description: '温柔倾听，也给你清醒的答案',
-    endpoint: '/ai/love_app/chat/sse',
-    placeholder: '说说你最近在关系中遇到的困惑...',
+  knowledgeEconomy: {
+    name: 'AI 知识经济顾问',
+    eyebrow: 'KNOWLEDGE ECONOMY',
+    description: '理解知识如何创造价值，洞察经济发展新趋势',
+    endpoint: '/ai/knowledge_economy/chat/sse',
+    placeholder: '请输入你想了解的知识经济问题...',
     greeting:
-      '嗨，我是你的 AI 恋爱大师。无论是暧昧期的猜测、相处中的摩擦，还是关于自己的情绪，都可以慢慢告诉我。',
-    suggestions: ['对方忽冷忽热怎么办？', '怎样表达需求不显得强势？', '帮我分析一段聊天记录'],
-    accent: 'rose',
+      '你好，我是 AI 知识经济顾问。我可以为你讲解知识经济的核心概念、发展趋势与实际应用。',
+    suggestions: ['什么是知识经济？', '知识经济有哪些主要特征？', '企业如何适应知识经济时代？'],
+    accent: 'knowledge',
   },
   manus: {
     name: 'AI 超级智能体',
@@ -266,7 +266,7 @@ async function sendMessage() {
 
   try {
     const params =
-      props.appType === 'love'
+      props.appType === 'knowledgeEconomy'
         ? { message: content, chatId: conversationChatId }
         : { message: content }
 
@@ -366,8 +366,9 @@ onMounted(() => scrollToBottom(false))
 
       <div class="sidebar-app">
         <span class="sidebar-app__icon" aria-hidden="true">
-          <svg v-if="appType === 'love'" viewBox="0 0 32 32" fill="none">
-            <path d="M16 26S5 20 5 12.5C5 8 10.5 6.5 13.5 10.5L16 14l2.5-3.5C21.5 6.5 27 8 27 12.5 27 20 16 26 16 26Z" fill="currentColor" />
+          <svg v-if="appType === 'knowledgeEconomy'" viewBox="0 0 32 32" fill="none">
+            <path d="M7 9.5 16 5l9 4.5-9 4.5-9-4.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+            <path d="M10 12v7.5c3.5 2.5 8.5 2.5 12 0V12M25 10v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
           <svg v-else viewBox="0 0 32 32" fill="none">
             <path d="M8 21V11l8 7 8-7v10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
@@ -466,6 +467,7 @@ onMounted(() => scrollToBottom(false))
         <div class="chat-header__title">
           <span class="online-dot"></span>
           <div>
+            <span class="chat-header__eyebrow">{{ config.eyebrow }}</span>
             <h1>{{ config.name }}</h1>
             <p>{{ config.description }}</p>
           </div>
@@ -503,7 +505,11 @@ onMounted(() => scrollToBottom(false))
             :class="[`message--${message.role}`, { 'message--error': message.error }]"
           >
             <div class="message__avatar" aria-hidden="true">
-              <svg v-if="message.role === 'assistant'" viewBox="0 0 32 32" fill="none">
+              <svg v-if="message.role === 'assistant' && appType === 'knowledgeEconomy'" viewBox="0 0 32 32" fill="none">
+                <path d="M7 9.5 16 5l9 4.5-9 4.5-9-4.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                <path d="M10 12v7.5c3.5 2.5 8.5 2.5 12 0V12M25 10v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <svg v-else-if="message.role === 'assistant'" viewBox="0 0 32 32" fill="none">
                 <path d="M8 21V11l8 7 8-7v10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
                 <circle cx="16" cy="7" r="2" fill="currentColor" />
               </svg>

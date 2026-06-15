@@ -1,5 +1,11 @@
 ### CUSTOM ###
 application-local.yml
+tmp/
+*.zip
+DataSourceConfig-*
+多数据源*
+程序员鱼皮*
+项目简历写法*
 
 HELP.md
 target/

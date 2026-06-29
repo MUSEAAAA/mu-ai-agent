@@ -17,11 +17,7 @@ const router = createRouter({
       component: ChatView,
       props: { appType: 'knowledgeEconomy' },
     },
-    {
-      path: '/love-master',
-      redirect: '/knowledge-economy',
-    },
-    {
+{
       path: '/super-agent',
       name: 'super-agent',
       component: ChatView,

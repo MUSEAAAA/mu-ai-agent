@@ -34,9 +34,7 @@ public class PgVectorVectorStoreConfig {
                 .vectorTableName("vector_store")     // Optional: defaults to "vector_store"
                 .maxDocumentBatchSize(10000)         // Optional: defaults to 10000
                 .build();
-        // 加载文档
-        //List<Document> documents = loveAppDocumentLoader.loadMarkdowns();
-       // vectorStore.add(documents);
+        // 文档加载由 KnowledgeEconomyDocumentLoader 单独处理
         return vectorStore;
     }
 }
